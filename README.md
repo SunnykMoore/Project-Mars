@@ -14,5 +14,6 @@ There are 2 directories called HelloDjango. You want to be in the 1st directory.
 Type "python manage.py runserver"
 
 A link should be provided to lead you to the locally-hosted website.
+Admin username is ADMIN, password is tostadas (obviously this is going to be changed in the final product but thankfully this is just proof of concept)
 
 Something to help https://www.youtube.com/watch?v=F5mRW0jo-U4
