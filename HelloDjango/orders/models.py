@@ -5,10 +5,10 @@ from products import models as product_models
 # Create your models here.
 
 class Order(models.Model):
-    product = models.OneToOneField(
+    product = models.ForeignKey(
         product_models.Product,
         on_delete=models.SET_NULL,
-        primary_key=True,
+        null=True
     )
     SR_first_name = models.CharField(max_length=35)
     SR_last_name = models.CharField(max_length=35)
