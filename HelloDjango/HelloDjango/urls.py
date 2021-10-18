@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
+from orders.views import OrderListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('products/', views.products, name='catalogue'),
-    path('order/', views.order, name='orderform'),
-    
+    #path('order/', views.order, name='orderform'),
+    path('order/', OrderListView.as_view()),
 ]
