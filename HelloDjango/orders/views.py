@@ -11,3 +11,6 @@ class CreateOrderView(CreateView):
     # form_class = OrderForm
     fields = '__all__'
     success_url = '/orders/'
+
+class CurrentOrderListView(ListView):
+    model = Order
