@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import OrderListView, CreateOrderView
+from orders.views import OrderListView, CreateOrderView, OrderInProgress
 
 urlpatterns = [
     path('admin/', admin.site.urls),
