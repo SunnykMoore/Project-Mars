@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('products/', views.products, name='catalogue'),
     #path('order/', views.order, name='orderform'), # Depreciated but kept for reference 10.18.21 BE
-    path('orders', OrderListView.as_view(), name='orders'),
+    path('orders/', OrderListView.as_view(), name='orders'),
     path('order/create/', CreateOrderView.as_view(), name='create_order'),
 ]
