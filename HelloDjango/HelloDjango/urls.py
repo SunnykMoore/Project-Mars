@@ -26,4 +26,5 @@ urlpatterns = [
     #path('order/', views.order, name='orderform'), # Depreciated but kept for reference 10.18.21 BE
     path('orders/', OrderListView.as_view(), name='orders'),
     path('order/create/', CreateOrderView.as_view(), name='create_order'),
+    path('orders/in_progress', views.OrderInProgress, name='orders_in_progress'),
 ]

@@ -1,0 +1,28 @@
+{% block content %}
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for order in filter.qs %}
+        <table>
+            <thead>
+                <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>SR Name</th>
+                <th>Customer Type</th>
+                <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.product }}</td>
+                    <td>{{ order.SR_first_name }} {{ order.SR_last_name }}</td>
+                    <td>{{ order.customer_type }}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}
