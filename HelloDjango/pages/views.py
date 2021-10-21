@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+# This is where we keep our non-specific pages. Pages unique to a product/order are stored in the corresponding folder
 def home(request, *args, **kwargs):
 	return render(request, "home.html", {})
 	
