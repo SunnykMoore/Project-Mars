@@ -44,4 +44,4 @@ class Order(models.Model):
     status = models.CharField(max_length=11, choices=status_choices, default="SUBMITTED")
 
     def __str__(self):
-        return ("Order Number", self.name)
+        return ("Order Number", self.id)
