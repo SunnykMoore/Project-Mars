@@ -20,10 +20,12 @@ class CurrentOrderListView(ListView):
 class CreateOrderView(CreateView, Product): #foundation technically there
     model = Order
     # form_class = OrderForm
-    fields = '__all__'
+    #fields = '__all__'
     product = Product
-    size = product.size
-    instrument_handle = product.handle
-    instrument_type = product.product_type
-    instrument_category = product.category
+    size = Product.size
+    instrument_handle = Product.handle
+    instrument_type = Product.product_type
+    instrument_category = Product.category
+    #print(str(Product.product_id))
+    fields = ['product', 'size']
     success_url = '/orders/'
