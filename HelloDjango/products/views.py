@@ -11,7 +11,7 @@ def catalogView(request):
 	paginator = Paginator(catalog, 4) # Show 4 products per page.
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	return render(request, 'catalog.html', {'page_obj': page_obj})
+	return render(request, 'catalog.html', {'page_obj': page_obj, 'catalog': catalog})
 	
 def prodView(request, prodID):
 	product = Product.objects.get(product_id=prodID)
