@@ -3,7 +3,7 @@
 
     <h2>Products Catalogue<h2>
 
-    {% for product in catalog %}
+    {% for product in page_obj %}
         <a href="/products/{{ product.id }}/"><img src="{{ product.image }}"></a><br>
         <h3>{{ product.name }}</h3>
     {% endfor %}
