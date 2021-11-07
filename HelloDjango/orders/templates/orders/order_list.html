@@ -15,11 +15,11 @@
 
     <tbody>
     <tr>
-        <td>{{ order.id }}</td>
+        <td><a href="{{ order.get_absolute_url }}">{{ order.id }}</td>
         <td>{{ order.product }}</td>
         <td>{{ order.SR_first_name }} {{ order.SR_last_name }}</td>
         <td>{{ order.customer_type }}</td>
-        <td>{{ order.status }}</td>
+        <td>{{ order.status }}</td></a>
         </tr>
     </tbody>
 
