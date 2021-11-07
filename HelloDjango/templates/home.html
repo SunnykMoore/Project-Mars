@@ -22,11 +22,11 @@
     </thead>
     <tbody>
     <tr>
-        <td>{{ order.id }}</td>
-        <td>{{ order.product }}</td>
-        <td>{{ order.SR_first_name }} {{ order.SR_last_name }}</td>
-        <td>{{ order.customer_type }}</td>
-        <td>{{ order.status }}</td>
+        <td><a href="/orders/{{ order.id }}">{{ order.id }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.product }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
         </tr>
     </tbody>
     </table>
