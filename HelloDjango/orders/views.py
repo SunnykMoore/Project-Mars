@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from orders.models import Order
 from orders.forms import OrderForm
 from products.models import Product
@@ -27,3 +27,6 @@ class CreateOrderView(CreateView, Product): #foundation technically there
     instrument_type = product.product_type
     instrument_category = product.category
     success_url = '/orders/'
+
+class OrderDetailView(DetailView):
+    model = Order
