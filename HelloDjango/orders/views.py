@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic.edit import UpdateView
 from orders.models import Order
 from orders.forms import OrderForm
 from products.models import Product
@@ -30,3 +31,7 @@ class CreateOrderView(CreateView, Product): #foundation technically there
 
 class OrderDetailView(DetailView):
     model = Order
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    fields = '__all__'
