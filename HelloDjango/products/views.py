@@ -2,19 +2,16 @@ from django.shortcuts import render
 from .models import Product
 from django.http import HttpResponse
 import templates
+from django.core.paginator import Paginator
 
 # Create your views here.
 	
 def catalogView(request):
 	catalog = Product.objects.all()
-	
-	html = '<center><h1>Medtronics Supply Store</h1><h2>Products Catalogue<h2><h1></h1>'
-	for product in catalog:
-		prodID = product.product_id
-		item = '<a href="/products/' + str(prodID) + '"><img src='+ str(product.image) +'></a><br><h2>'+ product.name +'</h2><br>'
-		html += item
-	html += '</center>'#so not everything is shoved to the left
-	return HttpResponse(html, status = 200)
+	paginator = Paginator(catalog, 4) # Show 4 products per page.
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	return render(request, 'catalog.html', {'page_obj': page_obj, 'catalog': catalog})
 	
 def prodView(request, prodID):
 	product = Product.objects.get(product_id=prodID)
