@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.db.models.fields import NullBooleanField
 from products import models as product_models
 
 # Create your models here.
@@ -42,6 +43,9 @@ class Order(models.Model):
         ("COMPLETED", "Completed")
     )
     status = models.CharField(max_length=11, choices=status_choices, default="SUBMITTED")
+    is_reorder = models.BooleanField(default=False)
+    num_reorders = models.PositiveIntegerField(default=0)
+    parent_reorder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
 
     def __str__(self):
         return ("Order Number " + str(self.id))
