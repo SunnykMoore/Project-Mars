@@ -1,3 +1,4 @@
+from _typeshed import Self
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.views.generic.edit import UpdateView
@@ -32,7 +33,14 @@ class CreateOrderView(CreateView, Product): #foundation technically there
 class OrderDetailView(DetailView):
     model = Order
 
-class OrderUpdateView(UpdateView):
+class OrderCopyView(UpdateView):
     model = Order
+    new_item = Order.objects.get(Self)
+    new_item.pk = None
     fields = '__all__'
     success_url = '/orders/'
+    
+def OrderCopy(request, id):
+    new_item = Order.objects.get(pk=id)
+    new_item.pk = None
+    form =  MyForm(request.POST or None, instance = new_item)
