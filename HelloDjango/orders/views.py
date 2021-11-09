@@ -17,13 +17,19 @@ class CreateOrderView(CreateView):
 class CurrentOrderListView(ListView):
     model = Order
   
-class CreateOrderView(CreateView, Product): #foundation technically there
+class OrderFromCatalog(CreateView, Product): #foundation technically there
     model = Order
+    prodID = Product.product_id
+    print(Product)
+    prod = Product.objects.get(product_id=1)
     # form_class = OrderForm
     fields = '__all__'
-    product = Product
-    size = product.size
-    instrument_handle = product.handle
-    instrument_type = product.product_type
-    instrument_category = product.category
+    initial = { 'product': prod,
+    'size': prod.size,
+    'instrument_category': prod.category,
+    'description': prod.description,
+    'quantity': 1,
+    'instrument_type': prod.product_type,
+    'instrument_handle': prod.handle,
+    }
     success_url = '/orders/'

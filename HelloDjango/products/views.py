@@ -22,3 +22,4 @@ def prodView(request, prodID):
 	html = '<center><h1>'+ product.name +'</h1>'+'<img src='+ str(product.image) +'<br><h2>'+ str(product.price) +'</h2><br><p>'+ product.description +'<br><p><a href='+ str(prodID) +'/order/create/'' target="_blank"><button type="button">Place an Order</button></p></center>'
 	
 	return HttpResponse(html, status = 200)
+	
