@@ -1,4 +1,3 @@
-from _typeshed import Self
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.views.generic.edit import UpdateView
