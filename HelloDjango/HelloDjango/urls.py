@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import OrderListView, CreateOrderView, OrderDetailView, OrderUpdateView
+from orders.views import OrderListView, CreateOrderView, OrderDetailView, OrderCopyView
 from products import views as prod
 
 urlpatterns = [
@@ -30,5 +30,5 @@ urlpatterns = [
     path('order/create/', CreateOrderView.as_view(), name='create_order'),
     path('products/<prodID>/order/create/', CreateOrderView.as_view(), name='create_order'),
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
-    path('orders/<pk>/update', OrderUpdateView.as_view(), name='update_order')
+    path('orders/<pk>/update', OrderCopyView.as_view(), name='copy_order')
 ]

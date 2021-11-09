@@ -35,8 +35,12 @@ class OrderDetailView(DetailView):
 
 class OrderCopyView(UpdateView):
     model = Order
-    new_item = Order.objects.get(Self)
-    new_item.pk = None
+    
+    def get_object(self, queryset=None):
+        new_item = super().get_object(queryset)
+        new_item.pk = None
+        return new_item
+    
     fields = '__all__'
     success_url = '/orders/'
     
