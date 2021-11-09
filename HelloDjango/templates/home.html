@@ -18,6 +18,7 @@
         <th>SR Name</th>
         <th>Customer Type</th>
         <th>Status</th>
+        <th></th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
+        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a>
         </tr>
     </tbody>
     </table>

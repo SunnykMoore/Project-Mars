@@ -32,7 +32,7 @@ class CreateOrderView(CreateView, Product): #foundation technically there
 class OrderDetailView(DetailView):
     model = Order
 
-class OrderCopyView(UpdateView):
+class OrderCopyView(UpdateView): # Reorders
     model = Order
     
     def get_object(self, queryset=None):
@@ -42,8 +42,3 @@ class OrderCopyView(UpdateView):
     
     fields = '__all__'
     success_url = '/orders/'
-    
-def OrderCopy(request, id):
-    new_item = Order.objects.get(pk=id)
-    new_item.pk = None
-    form =  MyForm(request.POST or None, instance = new_item)
