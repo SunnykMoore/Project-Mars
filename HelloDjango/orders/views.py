@@ -35,3 +35,4 @@ class OrderDetailView(DetailView):
 class OrderUpdateView(UpdateView):
     model = Order
     fields = '__all__'
+    success_url = '/orders/'
