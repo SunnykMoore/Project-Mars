@@ -21,7 +21,7 @@ class CreateOrderView(CreateView):
 class CurrentOrderListView(ListView):
     model = Order
   
-class CreateOrderView(CreateView, Product): #foundation technically there
+class OrderFromCatalog(CreateView, Product): #foundation technically there
     model = Order
     # form_class = OrderForm
     fields = '__all__'
