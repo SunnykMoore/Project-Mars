@@ -39,8 +39,15 @@ class OrderCopyView(UpdateView): # Reorders
     model = Order
     
     def get_object(self, queryset=None):
+        old_item = super().get_object(queryset)
+        old_item.is_reordered = True
+        old_item.num_reorders = (old_item.num_reorders + 1)
+        old_item.save()
         new_item = super().get_object(queryset)
         new_item.pk = None
+        new_item.is_reordered = False
+        new_item.num_reorders = 0
+        new_item.save()
         return new_item
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
