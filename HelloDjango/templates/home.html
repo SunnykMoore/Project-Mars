@@ -6,4 +6,30 @@
 	<button type="button">Place an Order</button></p>
 	
 <p><a href='/orders/' target="_blank">
-	<button type="button">Review Orders</button></p>
+	<button type="button">Review Orders</button></a></p>
+
+<h2>Most Recent Orders</h2>
+{% for order in latest_orders %}
+	<table>
+    <thead>
+        <tr>
+        <th>Order ID</th>
+        <th>Product</th>
+        <th>SR Name</th>
+        <th>Customer Type</th>
+        <th>Status</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><a href="/orders/{{ order.id }}">{{ order.id }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.product }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
+        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a></td>
+        </tr>
+    </tbody>
+    </table>
+{% endfor %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic.edit import UpdateView
 from orders.models import Order
 from orders.forms import OrderForm
 from products.models import Product
@@ -26,4 +27,18 @@ class CreateOrderView(CreateView, Product): #foundation technically there
     instrument_handle = product.handle
     instrument_type = product.product_type
     instrument_category = product.category
+    success_url = '/orders/'
+
+class OrderDetailView(DetailView):
+    model = Order
+
+class OrderCopyView(UpdateView): # Reorders
+    model = Order
+    
+    def get_object(self, queryset=None):
+        new_item = super().get_object(queryset)
+        new_item.pk = None
+        return new_item
+    
+    fields = '__all__'
     success_url = '/orders/'
