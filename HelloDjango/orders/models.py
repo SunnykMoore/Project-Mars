@@ -43,7 +43,7 @@ class Order(models.Model):
         ("COMPLETED", "Completed")
     )
     status = models.CharField(max_length=11, choices=status_choices, default="SUBMITTED")
-    is_reorder = models.BooleanField(default=False)
+    is_reordered = models.BooleanField(default=False)
     num_reorders = models.PositiveIntegerField(default=0)
     parent_reorder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
 
