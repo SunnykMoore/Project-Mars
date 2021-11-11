@@ -13,7 +13,7 @@ class CreateOrderView(CreateView):
     model = Order
     # form_class = OrderForm
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
-        'SR_email', 'department', 'physician', 'hospital', 'cust_choices', 'customer_type', 'clinical_need',
+        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
         'instrument_handle', 'status')
     success_url = '/orders/'
