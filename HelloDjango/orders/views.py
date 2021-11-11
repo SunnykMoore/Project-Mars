@@ -43,5 +43,8 @@ class OrderCopyView(UpdateView): # Reorders
         new_item.pk = None
         return new_item
     
-    fields = '__all__'
+    fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
+        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
+        'instrument_handle', 'status')
     success_url = '/orders/'
