@@ -44,7 +44,7 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
         if old_item.parent_reorder is not None: #checks if old order is a re-order
             old_item = old_item.parent_reorder #if old order is already a re-order, parent set to its parent 
         old_item.is_reordered = True  #sets the old order as a reorder
-        old_item.num_reorders = (old_item.num_reorders + 1) #increases the number of times this reorder has been placed
+        old_item.num_reorders = (old_item.num_reorders + 1) #increases the number of times this reorder has been placed (Bugged, can't find fix, but doesn't break functionality.  Iterates 2 times for all orders)
         old_item.save() #saves to database
         new_item = super().get_object(queryset) #grabs the old order again, but sets to new order variable
         new_item.pk = None #removes primary key, which causes django to make a new object and assign a new pk
