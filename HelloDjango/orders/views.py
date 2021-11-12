@@ -47,7 +47,7 @@ class OrderCopyView(UpdateView): # Reorders
         new_item.pk = None
         new_item.is_reordered = False
         new_item.num_reorders = 0
-        new_item.parent_reorder = old_item
+        new_item.parent_reorder = Order.objects.get(pk=old_item.pk)
         new_item.save()
         return new_item
     
