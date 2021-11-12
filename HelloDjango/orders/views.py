@@ -45,12 +45,12 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
             old_item = old_item.parent_reorder #if old order is already a re-order, parent set to its parent 
         old_item.is_reordered = True  #sets the old order as a reorder
         old_item.num_reorders = (old_item.num_reorders + 1) #increases the number of times this reorder has been placed
-        #old_item.save() #saves to database
+        old_item.save() #saves to database
         new_item = super().get_object(queryset) #grabs the old order again, but sets to new order variable
         new_item.pk = None #removes primary key, which causes django to make a new object and assign a new pk
         new_item.is_reordered = False #lines 48-49 may not be needed, but wanted to make sure new order didn't initialize its reorder fields incorrectly.
         new_item.num_reorders = 0
-        new_item.parent_reorder = Order.objects.get(pk=old_item.pk) #Sets new order's parent as old order
+        new_item.parent_reorder = old_item #Sets new order's parent as old order
         return new_item # returns the grabbed object (the newly created order) to the UpdateView to act on
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
