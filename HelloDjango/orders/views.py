@@ -41,6 +41,8 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
     def get_object(self, queryset=None): #overrides inherent get_object method in UpdateView
         # if old_item.parent_reorder is None: WHEN TO SET THIS UP?
         old_item = super().get_object(queryset) #sets the old order by calling the generic get_object version of the method
+        if old_item.parent_reorder is not None: #checks if old order is a re-order
+            old_item = old_item.parent_reorder #if old order is already a re-order, parent set to its parent 
         old_item.is_reordered = True  #sets the old order as a reorder
         old_item.num_reorders = (old_item.num_reorders + 1) #increases the number of times this reorder has been placed
         old_item.save() #saves to database
