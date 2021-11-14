@@ -30,11 +30,12 @@ class OrderFromCatalog(CreateView): #The pre-filled order form for each catalog 
     def get_initial(self, *args, **kwargs):
         initial = super(OrderFromCatalog, self).get_initial(**kwargs)
         initial['prodID'] = self.kwargs['prodID']
-        initial['size'] =self.kwargs['size']
-        initial['category'] = self.kwargs['category']
-        initial['description'] = self.kwargs['description']
-        initial['product_type'] = self.kwargs['product_type']
-        initial['handle'] = self.kwargs['handle']
+        prod = Product.objects.get(product_id=initial['prodID'])
+        initial['size'] = prod.size
+        initial['category'] = prod.category
+        initial['description'] = prod.description
+        initial['product_type'] = prod.product_type
+        initial['handle'] = prod.handle
         return initial
     
     """
