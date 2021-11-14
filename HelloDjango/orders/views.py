@@ -21,12 +21,7 @@ class CurrentOrderListView(ListView):
   
 class OrderFromCatalog(CreateView): #The pre-filled order form for each catalog product
     model = Order
-    def get_prod(self, **kwargs):
-        context = super(OrderFromCatalog, self).get_context_data(**kwargs)
-        context['prodID']= self.kwargs['prodID']
-        prod = Product.objects.get(product_id=context['prodID'])
-        return prod
-    prod = get_prod
+    prod = Product.objects.get(product_id='prodID')
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
         'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
