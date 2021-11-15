@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic.edit import UpdateView
 from orders.models import Order
 from orders.forms import OrderForm
 from products.models import Product
