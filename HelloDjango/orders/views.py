@@ -39,3 +39,17 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
         return order
     
     success_url = '/orders/'
+ 
+class OrderDetailView(DetailView):
+    model = Order
+
+class OrderCopyView(UpdateView): # Reorders
+    model = Order
+
+    def get_object(self, queryset=None):
+        new_item = super().get_object(queryset)
+        new_item.pk = None
+        return new_item
+
+    fields = '__all__'
+    success_url = '/orders/'    
