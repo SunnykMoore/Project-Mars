@@ -30,6 +30,7 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
     def get_object(self, queryset=None):
         order, created = Order.objects.get_or_create(pk=self.kwargs.get('pk'))
         prod = Product.objects.get(product_id=self.kwargs.get('prodID'))
+        order.product = prod
         order.size = prod.size
         order.instrument_category=prod.category
         order.description = prod.description
