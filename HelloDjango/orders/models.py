@@ -12,7 +12,7 @@ class Order(models.Model):
     )
     SR_first_name = models.CharField(max_length=35)
     SR_last_name = models.CharField(max_length=35)
-    SR_phone_number = models.PositiveIntegerField(validators=[MaxValueValidator(9999999999)])
+    SR_phone_number = models.PositiveIntegerField(validators=[MaxValueValidator(9999999999)], blank=True, null=True)
     SM_first_name = models.CharField(max_length=35)
     SM_last_name = models.CharField(max_length=35)
     SR_email = models.EmailField(max_length=254)
