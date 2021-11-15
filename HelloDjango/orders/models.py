@@ -30,7 +30,7 @@ class Order(models.Model):
     description = models.TextField()
     size = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     quantity = models.PositiveIntegerField(null=True)
-    disclaimer = models.BooleanField()
+    disclaimer = models.BooleanField(null=True)
     instrument_type= models.CharField(max_length=270)
     instrument_handle = models.CharField(max_length=270)
     status_choices = ( # Allowed status types
