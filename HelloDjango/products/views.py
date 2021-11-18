@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-
+from django.db.models import Q
 from pages.views import products
 from .models import Product
 from django.http import HttpResponse
@@ -29,10 +29,11 @@ class SearchCatalog(ListView):
     context_object_name = 'products'
     def get_queryset(self):
         query = self.request.GET.get('q')
-        return Product.objects.filter(name__icontains=query |
-                                      description__icontains=query |
-                                      price__icontains=query |
-                                      category__icontains=query |
-                                      size__icontains=query |
-                                      handle__icontains=query |
-                                      product_type__icontains=query)
+        return Product.objects.filter(
+            						  Q(name__icontains=query) |
+                                      Q(description__icontains=query) |
+                                      Q(price__icontains=query) |
+                                      Q(category__icontains=query) |
+                                      Q(size__icontains=query) |
+                                      Q(handle__icontains=query) |
+                                      Q(product_type__icontains=query))
