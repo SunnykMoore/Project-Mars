@@ -1,5 +1,4 @@
 """HelloDjango URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -17,7 +16,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView
+from orders.views import OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny
 from products.views import SearchCatalog
 from products import views as prod
 
@@ -32,5 +31,7 @@ urlpatterns = [
     path('products/<prodID>/order/create/', OrderFromCatalog.as_view(), name='create_order'),
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
     path('orders/<pk>/reorder', OrderCopyView.as_view(), name='reorder'),
+    path('orders/<int:pk>/approve', OrderApprove.as_view(), name='order_approve'),
+    path('orders/<int:pk>/deny', OrderDeny.as_view(), name='order_deny'),
     path('search/', SearchCatalog.as_view(), name='search_catalog')
 ]

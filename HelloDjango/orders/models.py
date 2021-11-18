@@ -45,6 +45,7 @@ class Order(models.Model):
     is_reordered = models.BooleanField(default=False)
     num_reorders = models.PositiveIntegerField(default=0)
     parent_reorder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, default=None)
+    denial_reason = models.TextField(default = "")
 
     def __str__(self):
         return ("Order Number " + str(self.id))
