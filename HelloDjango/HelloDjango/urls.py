@@ -32,5 +32,5 @@ urlpatterns = [
     path('products/<prodID>/order/create/', OrderFromCatalog.as_view(), name='create_order'),
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
     path('orders/<pk>/reorder', OrderCopyView.as_view(), name='reorder'),
-    path('products/search', SearchCatalog.as_view(), name='search_catalog')
+    path('search/', SearchCatalog.as_view(), name='search_catalog')
 ]
