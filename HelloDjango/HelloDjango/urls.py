@@ -18,6 +18,7 @@ from django.conf.urls import url,include
 from django.urls import path
 from pages import views
 from orders.views import OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView
+from products.views import SearchCatalog
 from products import views as prod
 
 urlpatterns = [
