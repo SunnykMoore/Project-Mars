@@ -18,7 +18,11 @@ class CreateOrderView(CreateView):
         prod.save() #saves to database
         return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
     
-    fields = '__all__'
+    fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
+        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
+        'instrument_handle')
+    
     success_url = '/orders/'
 
 class CurrentOrderListView(ListView):
