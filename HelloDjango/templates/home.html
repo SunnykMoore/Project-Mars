@@ -59,3 +59,23 @@
     </tbody>
     </table>
 {% endfor %}
+
+<h2>Featured Products</h2>
+{% for product in featured_prods %}
+	<table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><a href="/products/{{ product.id }}">{{ product.name }}</a></td>
+        <td><a href="/products/{{ product.id }}">{{ product.price }}</a></td>
+        <td><a href="/products/{{ product.id }}/order/create/"><button type = "button">Order</button></a></td>
+        </tr>
+    </tbody>
+    </table>
+{% endfor %}
