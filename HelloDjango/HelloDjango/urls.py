@@ -18,6 +18,7 @@ from django.conf.urls import url,include
 from django.urls import path
 from pages import views
 from orders.views import OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView
+from products.views import SearchCatalog
 from products import views as prod
 
 urlpatterns = [
@@ -30,5 +31,6 @@ urlpatterns = [
     path('order/create/', CreateOrderView.as_view(), name='create_order'),
     path('products/<prodID>/order/create/', OrderFromCatalog.as_view(), name='create_order'),
     path('orders/<int:pk>', OrderDetailView.as_view(), name='order_detail'),
-    path('orders/<pk>/reorder', OrderCopyView.as_view(), name='reorder')
+    path('orders/<pk>/reorder', OrderCopyView.as_view(), name='reorder'),
+    path('search/', SearchCatalog.as_view(), name='search_catalog')
 ]
