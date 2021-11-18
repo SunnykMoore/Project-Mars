@@ -1,6 +1,11 @@
 <center>
     <h1>Medtronics Supply Store</h1>
 
+    <form action="{% url 'search_catalog' %}" method="get">
+        <input type+"text" name="q" placeholder="Search Catalog">
+        <button type="submit">Search</button>
+    </form>
+
     <h2>Products Catalogue<h2>
 
     {% for product in page_obj %}
