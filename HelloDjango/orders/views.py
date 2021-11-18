@@ -65,3 +65,26 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
         'instrument_handle', 'status') #Selects fields to show in the form (not showing those that deal with reorders)
     success_url = '/orders/'
+    
+class OrderApprove(UpdateView):
+	model = Order
+	
+	def get_object(self, queryset=None): #overrides inherent get_object method in UpdateView
+		old_item = super().get_object(queryset) #sets the old order by calling the generic get_object version of the method
+		old_item.status = "APPROVED"
+		
+		return old_item #updates the order with our new status
+	fields = ('product', 'SR_first_name', 'SR_last_name', 'status')
+	success_url = '/orders/'
+	
+class OrderDeny(UpdateView):
+	model = Order
+	
+	def get_object(self, queryset=None): #overrides inherent get_object method in UpdateView
+		old_item = super().get_object(queryset) #sets the old order by calling the generic get_object version of the method
+		old_item.status = "DENIED"
+		old_item.denial_reason = ""
+		
+		return old_item #updates the order with our new status
+	fields = ('product', 'SR_first_name', 'SR_last_name', 'status', 'denial_reason')
+	success_url = '/orders/'
