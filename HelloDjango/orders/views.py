@@ -37,6 +37,12 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
         order.instrument_handle = prod.handle
         return order
     
+    def form_valid(self, form):
+        prod = form.instance.product
+        prod.num_orders = prod.num_orders + 1
+        prod.save()
+        return super().form_valid(form)
+    
     success_url = '/orders/'
 
 class OrderDetailView(DetailView):
