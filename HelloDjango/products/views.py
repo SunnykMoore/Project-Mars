@@ -26,7 +26,7 @@ def prodView(request, prodID):
 class SearchCatalog(ListView):
     model = Product
     template_name = 'catalog.html'
-    context_object_name = 'products'
+    context_object_name = 'page_obj'
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Product.objects.filter(
