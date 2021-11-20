@@ -12,7 +12,17 @@ class OrderListView(ListView):
 class CreateOrderView(CreateView):
     model = Order
     # form_class = OrderForm
-    fields = '__all__'
+    def form_valid(self, form): #override inherent form_valid method of CreateView
+        prod = form.instance.product #grabs the product by calling the product attribute of the current instance, the order being created
+        prod.num_orders = prod.num_orders + 1 #increments the num_orders field of the product
+        prod.save() #saves to database
+        return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
+    
+    fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
+        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
+        'instrument_handle')
+    
     success_url = '/orders/'
 
 class CurrentOrderListView(ListView):
@@ -37,6 +47,12 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
         order.instrument_handle = prod.handle
         return order
     
+    def form_valid(self, form): #override inherent form_valid method of UpdateView
+        prod = form.instance.product #grabs the product by calling the product attribute of the current instance, the order being created
+        prod.num_orders = prod.num_orders + 1 #increments the num_orders field of the product
+        prod.save() #saves to database
+        return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
+    
     success_url = '/orders/'
 
 class OrderDetailView(DetailView):
@@ -59,6 +75,12 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
         new_item.num_reorders = 0
         new_item.parent_reorder = old_item #Sets new order's parent as old order
         return new_item # returns the grabbed object (the newly created order) to the UpdateView to act on
+    
+    def form_valid(self, form): #override inherent form_valid method of UpdateView
+        prod = form.instance.product #grabs the product by calling the product attribute of the current instance, the order being created
+        prod.num_orders = prod.num_orders + 1 #increments the num_orders field of the product
+        prod.save() #saves to database
+        return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
         'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',

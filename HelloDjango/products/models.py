@@ -12,6 +12,7 @@ class Product(models.Model):
 	size = models.CharField(max_length = 120, default = "Medium")
 	handle = models.CharField(max_length = 360, default = "None")
 	product_type = models.CharField(max_length = 120, default = "Regular")
+	num_orders = models.PositiveIntegerField(default=0)
 	
 	def __str__(self):
 		return (self.name)
