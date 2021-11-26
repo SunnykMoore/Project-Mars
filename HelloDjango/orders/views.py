@@ -34,7 +34,7 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
         'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
-        'instrument_handle', 'status') #Select fields to show on form
+        'instrument_handle') #Select fields to show on form
     
     def get_object(self, queryset=None): #override inherent get_object method
         order = Order() #Instead of selecting an existing object, create brand new one
@@ -85,7 +85,7 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
         'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
-        'instrument_handle', 'status') #Selects fields to show in the form (not showing those that deal with reorders)
+        'instrument_handle') #Selects fields to show in the form (not showing those that deal with reorders)
     success_url = '/orders/'
     
 class OrderApprove(UpdateView):
