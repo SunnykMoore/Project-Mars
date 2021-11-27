@@ -138,7 +138,7 @@ class SearchOrders(ListView):
     def get_queryset(self): #Override listview get_queryset to just get the orders that match search terms
         query = self.request.GET.get('q') #obtains 'q', the query submitted by the user
         return Order.objects.filter( #searches applicable order attributes for search terms
-                                    Q(product__icontains=query) |
+                                    Q(product__name__icontains=query) |
                                     Q(SR_first_name__icontains=query) |
                                     Q(SR_last_name__icontains=query) |
                                     Q(SR_phone_number__icontains=query) |
