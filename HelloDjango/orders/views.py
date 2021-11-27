@@ -23,7 +23,7 @@ class CurrentOrders(ListView):
                                                         Q(status="SUBMITTED") |
                                                         Q(status="APPROVED") |
                                                         Q(status="IN PROGRESS") |
-                                                        Q(status="SHIPPED") )
+                                                        Q(status="SHIPPED") ).exclude(hospital = "Enter Hospital")
         return context
     
     template_name='orders/current_order_list.html'
