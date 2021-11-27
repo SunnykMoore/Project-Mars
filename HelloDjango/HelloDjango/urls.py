@@ -37,5 +37,6 @@ urlpatterns = [
     path('search/', SearchCatalog.as_view(), name='search_catalog'),
     path('orders/current', CurrentOrders.as_view(), name='current_orders'),
     path('orders/denied', DeniedOrders.as_view(), name='denied_orders'),
-    path('orders/search', SearchOrders.as_view(), name='search_orders')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('orders/search', SearchOrders.as_view(), name='search_orders'),
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
