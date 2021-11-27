@@ -12,6 +12,11 @@ class OrderListView(ListView):
     def get_queryset(self):
         return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
     
+class CurrentOrders(ListView):
+    model = Order
+    def get_queryset(self):
+        return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
+    
     def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
         context = super(OrderListView, self).get_context_data(**kwargs) #Calls original version of method
         context['current_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
@@ -20,6 +25,8 @@ class OrderListView(ListView):
                                                         Q(status="IN PROGRESS") |
                                                         Q(status="SHIPPED") )
         return context
+    
+    template_name='orders/current_order_list.html'
 
 class CreateOrderView(CreateView):
     model = Order
