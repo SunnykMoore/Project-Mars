@@ -18,4 +18,7 @@
 <b>Clinical Need:</b> {{order.clinical_need}}<br>
 <b>Instrument Category:</b> {{order.instrument_category}}<br>
 <b>Description:</b> {{order.description}}<br>
+{% if order.status == "DENIED": %}
+    <b>Denial Reason:</b> {{order.denial_reason}}<br>
+{% endif %}
 </p>
