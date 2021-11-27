@@ -2,10 +2,6 @@
 <h2>
     <a href="/orders/current"><button type="button">See Current Orders</button></a>
     <a href="/orders/denied"><button type="button">See Denied Orders</button></a>
-    <form action="{% url 'search_orders' %}" method="get">
-        <input type+"text" name="q" placeholder="Search Orders">
-        <button type="submit">Search</button>
-    </form>
 </h2>
 
 {% for order in object_list %}
