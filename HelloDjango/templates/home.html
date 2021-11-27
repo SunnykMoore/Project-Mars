@@ -13,7 +13,7 @@
 	<table>
     <thead>
         <tr>
-        <th>Order ID</th>
+        <th></th>
         <th>Product</th>
         <th>SR Name</th>
         <th>Customer Type</th>
@@ -23,7 +23,7 @@
     </thead>
     <tbody>
     <tr>
-        <td><a href="/orders/{{ order.id }}">{{ order.id }}</a></td>
+        <td><a href="/orders/{{ order.id }}"><img src="{{ order.product.image.url }}" width=200 height=200></a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.product }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
