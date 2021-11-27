@@ -5,11 +5,21 @@ from orders.models import Order
 from orders.forms import OrderForm
 from products.models import Product
 from django.http import HttpResponse
+from django.db.models import Q
 
 class OrderListView(ListView):
     model = Order
     def get_queryset(self):
-          return Order.objects.exclude(hospital = "Enter Hospital")
+        return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
+    
+    def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
+        context = super(OrderListView, self).get_context_data(**kwargs) #Calls original version of method
+        context['current_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
+                                                        Q(status="SUBMITTED") |
+                                                        Q(status="APPROVED") |
+                                                        Q(status="IN PROGRESS") |
+                                                        Q(status="SHIPPED") )
+        return context
 
 class CreateOrderView(CreateView):
     model = Order
