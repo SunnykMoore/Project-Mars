@@ -132,3 +132,27 @@ class OrderDeny(UpdateView):
 		return old_item #updates the order with our new status
 	fields = ('product', 'SR_first_name', 'SR_last_name', 'status', 'denial_reason')
 	success_url = '/orders/'
+
+class SearchOrders(ListView):
+    model = Order
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Order.objects.filter(
+            						  Q(product__icontains=query) |
+                                      Q(SR_first_name__icontains=query) |
+                                      Q(SR_last_name__icontains=query) |
+                                      Q(SR_phone_number__icontains=query) |
+                                      Q(SM_last_name__icontains=query) |
+                                      Q(SR_email__icontains=query) |
+                                      Q(department__icontains=query) |
+                                      Q(physician__icontains=query) |
+                                      Q(hospital__icontains=query) |
+                                      Q(customer_type__icontains=query) |
+                                      Q(clinical_need__icontains=query) |
+                                      Q(instrument_category__icontains=query) |
+                                      Q(description__icontains=query) |
+                                      Q(size__icontains=query) |
+                                      Q(instrument_type__icontains=query) |
+                                      Q(instrument_handle__icontains=query) |
+                                      Q(denial_reason__icontains=query)
+                                      )
