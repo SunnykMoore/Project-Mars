@@ -3,6 +3,10 @@
 <p><h2>Order Status: {{order.status}}</h2></p>
 
 <p>
+<img src="{{ order.product.image.url }}">
+</p>
+
+<p>
 <b>Product Ordered:</b> {{order.product}}<br>
 <b>Quantity:</b> {{order.quantity}}<br>
 <b>Instrument Type:</b> {{order.instrument_category}}<br>
