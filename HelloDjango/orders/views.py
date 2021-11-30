@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.views.generic.edit import UpdateView
 from orders.models import Order
-from orders.forms import OrderForm
 from products.models import Product
-from django.http import HttpResponse
 from django.db.models import Q
 
 class OrderListView(ListView):
@@ -14,7 +12,7 @@ class OrderListView(ListView):
     
 class CurrentOrders(ListView):
     model = Order
-    def get_queryset(self):
+    def get_queryset(self): #Overrides the default queryset for listview
         return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
     
     def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
@@ -26,11 +24,16 @@ class CurrentOrders(ListView):
                                                         Q(status="SHIPPED") ).exclude(hospital = "Enter Hospital")
         return context
     
-    template_name='orders/current_order_list.html'
+    template_name='orders/current_order_list.html' #Selects which html template to pass the context to
+    
+class DeniedOrders(ListView):
+    model = Order
+    def get_queryset(self): #Combines filtering to denied orders and excluding dummy new order into overriding the get_queryset method
+        return Order.objects.exclude(hospital = "Enter Hospital").filter(status="DENIED") #Excludes the dummy order for a new Product that new product orders are based on
+    template_name='orders/denied_order_list.html' #Selects which html template to pass the context to
 
 class CreateOrderView(CreateView):
     model = Order
-    # form_class = OrderForm
     def form_valid(self, form): #override inherent form_valid method of CreateView
         prod = form.instance.product #grabs the product by calling the product attribute of the current instance, the order being created
         prod.num_orders = prod.num_orders + 1 #increments the num_orders field of the product

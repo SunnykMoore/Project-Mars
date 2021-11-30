@@ -1,8 +1,5 @@
-<h1>Orders</h1>
-<h2>
-    <a href="/orders/current"><button type="button">See Current Orders</button></a>
-    <a href="/orders/denied"><button type="button">See Denied Orders</button></a>
-</h2>
+<h1>Denied Orders</h1>
+<h2><a href="/orders/"><button type="button">Return to all Orders</button</a></h2>
 
 {% for order in object_list %}
     <table>
@@ -25,9 +22,7 @@
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
-        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a></td>
-        <td><a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a></td>
-        <td><a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a></td>
+        <td><a href="/orders/{{ order.id }}">{{ order.denial_reason }}</a></td>
         </tr>
     </tbody>
 

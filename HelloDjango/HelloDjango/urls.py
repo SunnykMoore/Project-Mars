@@ -16,7 +16,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import CurrentOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny
+from orders.views import CurrentOrders, DeniedOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny
 from products.views import SearchCatalog
 from products import views as prod
 
@@ -34,5 +34,6 @@ urlpatterns = [
     path('orders/<int:pk>/approve', OrderApprove.as_view(), name='order_approve'),
     path('orders/<int:pk>/deny', OrderDeny.as_view(), name='order_deny'),
     path('search/', SearchCatalog.as_view(), name='search_catalog'),
-    path('orders/current', CurrentOrders.as_view(), name='current_orders')
+    path('orders/current', CurrentOrders.as_view(), name='current_orders'),
+    path('orders/denied', DeniedOrders.as_view(), name='denied_orders')
 ]
