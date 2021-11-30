@@ -1,0 +1,19 @@
+<center>
+
+<p><h1>{{product.name}}</h1></p>
+
+<p><img src="{{ product.image.url }}"></p>
+
+<p><h2>Price: ${{product.price}}</h2></p>
+
+<p>Description: {{product.description}}<br>
+Total Orders: {{product.num_orders}}<br></p>
+
+<p><h3>Default Specs</h3><br>
+Category: {{product.category}}<br>
+Size: {{product.size}}<br>
+Handle: {{product.handle}}</p>
+
+<p><a href='+ str(prodID) +'/order/create/ target="_blank"><button type="button">Place an Order</button></a></p>
+
+</center>
