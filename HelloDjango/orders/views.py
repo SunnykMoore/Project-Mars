@@ -74,6 +74,7 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
         new_item.is_reordered = False #lines 48-49 may not be needed, but wanted to make sure new order didn't initialize its reorder fields incorrectly.
         new_item.num_reorders = 0
         new_item.parent_reorder = old_item #Sets new order's parent as old order
+        new_item.status = 'SUBMITTED' #so reorders aren't automatically approved/denied
         return new_item # returns the grabbed object (the newly created order) to the UpdateView to act on
     
     def form_valid(self, form): #override inherent form_valid method of UpdateView
