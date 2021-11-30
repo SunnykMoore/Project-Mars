@@ -16,7 +16,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import CurrentOrders, DeniedOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny
+from orders.views import CurrentOrders, DeniedOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny, SearchOrders
 from products.views import SearchCatalog
 from products import views as prod
 
@@ -25,7 +25,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('products/', prod.catalogView, name='catalogue'),
     path('products/<prodID>', prod.prodView, name='product'),
-    #path('order/', views.order, name='orderform'), # Depreciated but kept for reference 10.18.21 BE
     path('orders/', OrderListView.as_view(), name='orders'),
     path('order/create/', CreateOrderView.as_view(), name='create_order'),
     path('products/<prodID>/order/create/', OrderFromCatalog.as_view(), name='create_order'),
@@ -35,5 +34,6 @@ urlpatterns = [
     path('orders/<int:pk>/deny', OrderDeny.as_view(), name='order_deny'),
     path('search/', SearchCatalog.as_view(), name='search_catalog'),
     path('orders/current', CurrentOrders.as_view(), name='current_orders'),
-    path('orders/denied', DeniedOrders.as_view(), name='denied_orders')
+    path('orders/denied', DeniedOrders.as_view(), name='denied_orders'),
+    path('orders/search', SearchOrders.as_view(), name='search_orders')
 ]
