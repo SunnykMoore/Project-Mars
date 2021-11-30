@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 	
 def catalogView(request):
-	catalog = Product.objects.all()
+	catalog = Product.objects.exclude(name = "New Product")
 	paginator = Paginator(catalog, 4) # Show 4 products per page.
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)

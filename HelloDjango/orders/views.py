@@ -8,6 +8,8 @@ from django.http import HttpResponse
 
 class OrderListView(ListView):
     model = Order
+    def get_queryset(self):
+          return Order.objects.exclude(hospital = "Enter Hospital")
 
 class CreateOrderView(CreateView):
     model = Order
