@@ -1,7 +1,7 @@
-<h1>Orders</h1>
-<h2><a href="/orders/current"><button type="button">See Current Orders</button</a></h2>
+<h1>Current Orders</h1>
+<h2><a href="/orders/"><button type="button">Return to all Orders</button</a></h2>
 
-{% for order in object_list %}
+{% for order in current_orders %}
     <table>
 
     <thead>
