@@ -25,6 +25,21 @@ class CurrentOrders(ListView):
         return context
     
     template_name='orders/current_order_list.html' #Selects which html template to pass the context to
+
+class CompletedOrders(ListView):
+    model = Order
+    def get_queryset(self): #Overrides the default queryset for listview
+        return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
+    
+    def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
+        context = super(CompletedOrders, self).get_context_data(**kwargs) #Calls original version of method
+        context['completed_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
+                                                        
+                                                        Q(status="COMPLETED") ).exclude(hospital = "Enter Hospital")
+        return context
+    
+    template_name='orders/completed_order_list.html' #Selects which html template to pass the context to
+
     
 class DeniedOrders(ListView):
     model = Order
