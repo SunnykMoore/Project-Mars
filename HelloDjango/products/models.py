@@ -8,7 +8,14 @@ class Product(models.Model):
 	price = models.DecimalField(max_digits=100, decimal_places=2)
 	image = models.ImageField(upload_to='media', default="default.jpeg")
 	product_id = models.IntegerField(default=0000)
-	category = models.TextField(default = "")
+	category_choices = (
+		("CT", "Cervical/Trauma"),
+		("IFAVBR", "Interbody Fusion and Vertebral Body Replacement"),
+		("TC", "Thoracolumbar"),
+		("MAST", "MAST"),
+		("GI", "General Instruments")
+	)
+	category = models.CharField(max_length=6, choices=category_choices, null=True)
 	size = models.CharField(max_length = 120, default = "Medium")
 	handle = models.CharField(max_length = 360, default = "None")
 	product_type = models.CharField(max_length = 120, default = "Regular")
