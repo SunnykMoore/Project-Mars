@@ -34,4 +34,5 @@ class SearchCatalog(ListView):
                                       Q(category__icontains=query) |
                                       Q(size__icontains=query) |
                                       Q(handle__icontains=query) |
-                                      Q(product_type__icontains=query))
+                                      Q(product_type__icontains=query) |
+                                      Q(department__icontains=query))

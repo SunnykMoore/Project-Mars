@@ -33,7 +33,7 @@ class CompletedOrders(ListView):
     
     def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
         context = super(CompletedOrders, self).get_context_data(**kwargs) #Calls original version of method
-        context['completed_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
+        context['completed_orders'] = Order.objects.filter( #Creates a subset of the context with only completed orders
                                                         
                                                         Q(status="COMPLETED") ).exclude(hospital = "Enter Hospital")
         return context
@@ -56,7 +56,7 @@ class CreateOrderView(CreateView):
         return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
-        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'SR_email', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
         'instrument_handle')
     
@@ -69,7 +69,7 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
     model = Order #select model to create/update objects with
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
-        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'SR_email', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
         'instrument_handle') #Select fields to show on form
     
@@ -121,7 +121,7 @@ class OrderCopyView(UpdateView): # Reorders, inherits from the generic django up
         return super().form_valid(form) #returns the results of the form_valid method of UpdateView and not this one
     
     fields = ('product', 'SR_first_name', 'SR_last_name', 'SR_phone_number', 'SM_first_name', 'SM_last_name',
-        'SR_email', 'department', 'physician', 'hospital', 'customer_type', 'clinical_need',
+        'SR_email', 'physician', 'hospital', 'customer_type', 'clinical_need',
         'instrument_category', 'description', 'size', 'quantity', 'disclaimer', 'instrument_type',
         'instrument_handle') #Selects fields to show in the form (not showing those that deal with reorders)
     success_url = '/orders/'
@@ -160,7 +160,6 @@ class SearchOrders(ListView):
                                     Q(SR_phone_number__icontains=query) |
                                     Q(SM_last_name__icontains=query) |
                                     Q(SR_email__icontains=query) |
-                                    Q(department__icontains=query) |
                                     Q(physician__icontains=query) |
                                     Q(hospital__icontains=query) |
                                     Q(customer_type__icontains=query) |
