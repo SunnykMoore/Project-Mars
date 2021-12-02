@@ -6,7 +6,7 @@ class Product(models.Model):
 	name = models.CharField(max_length = 360, default = "New Product")
 	description = models.TextField()
 	price = models.DecimalField(max_digits=100, decimal_places=2)
-	image = models.ImageField(upload_to='media', default="default.jpg")
+	image = models.ImageField(upload_to='media', default="default.jpeg")
 	part_number = models.CharField(max_length = 360, default = "X0000000")
 	category_choices = (
 		("CT", "Cervical/Trauma"),
