@@ -17,8 +17,8 @@ def catalogView(request):
 	return render(request, 'catalog.html', {'page_obj': page_obj, 'catalog': catalog})
 	
 def prodView(request, prodID):
-	product = Product.objects.get(product_id=prodID)
-	prodID = product.product_id
+	product = Product.objects.get(id=prodID)
+	prodID = product.id
 
 	return render(request, 'product_detail.html', {'product': product, 'prodID': prodID})
 

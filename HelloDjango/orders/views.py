@@ -75,7 +75,7 @@ class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog 
     
     def get_object(self, queryset=None): #override inherent get_object method
         order = Order() #Instead of selecting an existing object, create brand new one
-        prod = Product.objects.get(product_id=self.kwargs.get('prodID')) #get the product using the prodID section of the url
+        prod = Product.objects.get(id=self.kwargs.get('prodID')) #get the product using the prodID section of the url
         order.product = prod #lines 33-38 set the attributes of the order based on the selected product
         order.size = prod.size
         order.instrument_category=prod.category
