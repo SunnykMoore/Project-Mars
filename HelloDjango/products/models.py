@@ -26,7 +26,7 @@ class Product(models.Model):
 		("E","4 Inch Cervical Inline w/Impact Cap"),
 		("NP", "New Product")
 	)
-	handle = models.CharField(max_length=1, choices=handle_choices, null=True)
+	handle = models.CharField(max_length=2, choices=handle_choices, null=True)
 	type_choices = (
 		("A", "Simple Modification - Make from Scratch"),
 		("B", "Minor Mod to Standard Device"),
@@ -34,7 +34,7 @@ class Product(models.Model):
 		("D", "Complex Assembly - Many Components"),
 		("NP", "New Product")
 	)
-	product_type = models.CharField(max_length=1, choices=type_choices, null=True)
+	product_type = models.CharField(max_length=2, choices=type_choices, null=True)
 	num_orders = models.PositiveIntegerField(default=0)
 	department = models.CharField(max_length=20, blank=True, default='')
 	
