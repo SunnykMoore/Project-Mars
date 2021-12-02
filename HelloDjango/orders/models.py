@@ -27,7 +27,7 @@ class Order(models.Model):
     clinical_need = models.CharField(max_length=200)
     instrument_category = models.CharField(max_length=70)
     description = models.TextField()
-    size = models.DecimalField(max_digits=5, decimal_places=2)
+    size = models.CharField(max_length = 120, default = "Standard")
     quantity = models.PositiveIntegerField()
     disclaimer = models.BooleanField()
     instrument_type= models.CharField(max_length=270)
