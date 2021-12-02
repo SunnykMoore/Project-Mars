@@ -17,7 +17,7 @@ class Product(models.Model):
 		("NP", "New Product")
 	)
 	category = models.CharField(max_length=6, choices=category_choices, null=True)
-	size = models.CharField(max_length = 120, default = "Medium")
+	size = models.CharField(max_length = 120, default = "Standard")
 	handle_choices = (
 		("A","1.9 Inch Ball w/ Impact Cap"),
 		("B","4.8 Inch Ergonomic Inline"),
