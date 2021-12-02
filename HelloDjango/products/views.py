@@ -20,11 +20,7 @@ def prodView(request, prodID):
 	product = Product.objects.get(product_id=prodID)
 	prodID = product.product_id
 
-	#return render(request, 'product_detail.html', {'product': product, 'prodID': prodID})
-
-	html = '<center><h1>'+ product.name +'</h1>'+'<img src='+ str(product.image) +'><br><h2>Price: $'+ str(product.price) +'</h2><br><p>About this product: '+ product.description +'</p><br>Total Orders: ' + str(product.num_orders) + '\tProduct ID: ' + str(product.product_id) + '<br><h3>Default Specs: </h3><br>Category: ' + str(product.category) + '<br>Size: ' + str(product.size) + '<br>Type: ' + str(product.product_type) + '<br>Handle: ' + str(product.handle) + '<br><a href='+ str(prodID) +'/order/create/ target="_blank"><button type="button">Place an Order</button></center>'
-	
-	return HttpResponse(html, status = 200)
+	return render(request, 'product_detail.html', {'product': product, 'prodID': prodID})
 
 
 class SearchCatalog(ListView):
