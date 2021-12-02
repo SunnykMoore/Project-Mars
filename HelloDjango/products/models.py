@@ -17,7 +17,14 @@ class Product(models.Model):
 	)
 	category = models.CharField(max_length=6, choices=category_choices, null=True)
 	size = models.CharField(max_length = 120, default = "Medium")
-	handle = models.CharField(max_length = 360, default = "None")
+	handle_choices = (
+		("A","1.9 Inch Ball w/ Impact Cap"),
+		("B","4.8 Inch Ergonomic Inline"),
+		("C","4.75 Inch Tapered w/ Impact Cap"),
+		("D","6 Inch Ergonomic Inline w/ Impact Cap"),
+		("E","4 Inch Cervical Inline w/Impact Cap")
+	)
+	handle = models.CharField(max_length=1, choices=handle_choices, null=True)
 	type_choices = (
 		("A", "Simple Modification - Make from Scratch"),
 		("B", "Minor Mod to Standard Device"),
