@@ -19,7 +19,9 @@ def catalogView(request):
 def prodView(request, prodID):
 	product = Product.objects.get(product_id=prodID)
 	prodID = product.product_id
+
 	return render(request, 'product_detail.html', {'product': product, 'prodID': prodID})
+
 
 class SearchCatalog(ListView):
     model = Product
