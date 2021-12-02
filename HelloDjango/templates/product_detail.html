@@ -10,9 +10,9 @@
 Total Orders: {{product.num_orders}}<br></p>
 
 <p><h3>Default Specs</h3>
-Category: {{product.category}}<br>
-Size: {{product.size}}<br>
-Handle: {{product.handle}}</p>
+    Category: {{product.get_category_display}}<br>
+    Size: {{product.size}}<br>
+    Handle: {{product.get_handle_display}}</p>
 
 <p><a href="{{prodID}}/order/create/" target="_blank"><button type="button">Place an Order</button></a></p>
 
