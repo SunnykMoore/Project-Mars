@@ -18,7 +18,13 @@ class Product(models.Model):
 	category = models.CharField(max_length=6, choices=category_choices, null=True)
 	size = models.CharField(max_length = 120, default = "Medium")
 	handle = models.CharField(max_length = 360, default = "None")
-	product_type = models.CharField(max_length = 120, default = "Regular")
+	type_choices = (
+		("A", "Simple Modification - Make from Scratch"),
+		("B", "Minor Mod to Standard Device"),
+		("C", "Complex Design - Requires Predicate"),
+		("D", "Complex Assembly - Many Components")
+	)
+	product_type = models.CharField(max_length=1, choices=type_choices, null=True)
 	num_orders = models.PositiveIntegerField(default=0)
 	department = models.CharField(max_length=20, null=True)
 	
