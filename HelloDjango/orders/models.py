@@ -16,7 +16,6 @@ class Order(models.Model):
     SM_first_name = models.CharField(max_length=35)
     SM_last_name = models.CharField(max_length=35)
     SR_email = models.EmailField(max_length=254)
-    department = models.CharField(max_length=20)
     physician = models.CharField(max_length=70)
     hospital = models.CharField(max_length=70)
     cust_choices = ( #Choices for the customer type dropdown menu
