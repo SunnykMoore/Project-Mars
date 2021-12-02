@@ -13,7 +13,8 @@ class Product(models.Model):
 		("IFAVBR", "Interbody Fusion and Vertebral Body Replacement"),
 		("TC", "Thoracolumbar"),
 		("MAST", "MAST"),
-		("GI", "General Instruments")
+		("GI", "General Instruments"),
+		("NP", "New Product")
 	)
 	category = models.CharField(max_length=6, choices=category_choices, null=True)
 	size = models.CharField(max_length = 120, default = "Medium")
@@ -22,14 +23,16 @@ class Product(models.Model):
 		("B","4.8 Inch Ergonomic Inline"),
 		("C","4.75 Inch Tapered w/ Impact Cap"),
 		("D","6 Inch Ergonomic Inline w/ Impact Cap"),
-		("E","4 Inch Cervical Inline w/Impact Cap")
+		("E","4 Inch Cervical Inline w/Impact Cap"),
+		("NP", "New Product")
 	)
 	handle = models.CharField(max_length=1, choices=handle_choices, null=True)
 	type_choices = (
 		("A", "Simple Modification - Make from Scratch"),
 		("B", "Minor Mod to Standard Device"),
 		("C", "Complex Design - Requires Predicate"),
-		("D", "Complex Assembly - Many Components")
+		("D", "Complex Assembly - Many Components"),
+		("NP", "New Product")
 	)
 	product_type = models.CharField(max_length=1, choices=type_choices, null=True)
 	num_orders = models.PositiveIntegerField(default=0)
