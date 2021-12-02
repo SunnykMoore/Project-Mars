@@ -7,7 +7,7 @@ class Product(models.Model):
 	description = models.TextField()
 	price = models.DecimalField(max_digits=100, decimal_places=2)
 	image = models.ImageField(upload_to='media', default="default.jpg")
-	product_id = models.IntegerField(default=0000)
+	part_number = models.CharField(max_length = 360, default = "X0000000")
 	category_choices = (
 		("CT", "Cervical/Trauma"),
 		("IFAVBR", "Interbody Fusion and Vertebral Body Replacement"),
