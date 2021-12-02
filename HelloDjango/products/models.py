@@ -24,7 +24,8 @@ class Product(models.Model):
 		("C","4.75 Inch Tapered w/ Impact Cap"),
 		("D","6 Inch Ergonomic Inline w/ Impact Cap"),
 		("E","4 Inch Cervical Inline w/Impact Cap"),
-		("NP", "New Product")
+		("NP", "New Product"),
+		("NA", "Not Applicable")
 	)
 	handle = models.CharField(max_length=2, choices=handle_choices, null=True)
 	type_choices = (
