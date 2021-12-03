@@ -50,9 +50,9 @@ class Order(models.Model):
 		("New Product", "New Product")
 	)
     instrument_type = models.CharField(max_length=39, choices=type_choices, null=True, help_text=
-        ("Simple Modification - Make from Scratch: $750-1250" +
-        "Minor Mod to Standard Device: $1000-$2000" +
-        "Complex Design - Requires Predicate: $1750-$3000" +
+        ("Simple Modification - Make from Scratch: $750-1250\n" +
+        "Minor Mod to Standard Device: $1000-$2000\n" +
+        "Complex Design - Requires Predicate: $1750-$3000\n" +
         "Complex Assembly - Many Components: $3000-$4500"))
     handle_choices = (
 		("1.9 Inch Ball w/ Impact Cap","1.9 Inch Ball w/ Impact Cap"),
