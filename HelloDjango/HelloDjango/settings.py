@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'orders.apps.OrdersConfig', # Include the orders app in the project
     'products','pages',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
