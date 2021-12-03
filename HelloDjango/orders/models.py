@@ -1,10 +1,15 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 from products import models as product_models
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
 class Order(models.Model):
+    def validate_true(value):
+        if value is False:
+            raise ValidationError("You must accept the disclaimer to submit the order.")
+
     product = models.ForeignKey(
         product_models.Product,
         on_delete=models.SET_NULL,
@@ -30,7 +35,7 @@ class Order(models.Model):
     description = models.TextField()
     size = models.DecimalField(max_digits=5, decimal_places=2)
     quantity = models.PositiveIntegerField()
-    disclaimer = models.BooleanField(help_text=
+    disclaimer = models.BooleanField(validators=[validate_true], help_text=
         "I agree to submit this request form to my manager for approval.  If actual cost exceeds maximum price range, I will be notified with adjusted price prior to manufacturing with no obligation to continue.")
     instrument_type= models.CharField(max_length=270)
     instrument_handle = models.CharField(max_length=270)
