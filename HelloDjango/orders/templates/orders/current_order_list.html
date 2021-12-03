@@ -1,5 +1,5 @@
 <h1>Current Orders</h1>
-<h2><a href="/orders/"><button type="button">Return to all Orders</button</a></h2>
+<h2><a href="/orders/"><button type="button">Return to all Orders</button></a></h2>
 
 {% for order in current_orders %}
     <table>
@@ -22,9 +22,14 @@
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
-        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a></td>
-        <td><a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a></td>
-        <td><a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a></td>
+        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a>
+            {% if order.status == "SUBMITTED" %}
+                <a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a>
+                <a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a>
+            {% endif %}
+            {% if order.status == "IN PROGRESS" or order.status == "SHIPPED" %}
+                <a href="/orders/{{ order.id }}/update_status"><button type = "button">Update Status</button></a>
+            {% endif %}
         </tr>
     </tbody>
 

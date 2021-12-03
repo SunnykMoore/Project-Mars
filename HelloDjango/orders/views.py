@@ -172,3 +172,8 @@ class SearchOrders(ListView):
                                     Q(instrument_handle__icontains=query) |
                                     Q(denial_reason__icontains=query)
                                     )
+
+class UpdateStatus(UpdateView):
+	model = Order
+	fields = ('product', 'SR_first_name', 'SR_last_name', 'status')
+	success_url = '/orders/'

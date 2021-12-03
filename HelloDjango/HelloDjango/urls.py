@@ -16,7 +16,7 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.urls import path
 from pages import views
-from orders.views import CompletedOrders, CurrentOrders, DeniedOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny, SearchOrders
+from orders.views import CompletedOrders, CurrentOrders, DeniedOrders, OrderFromCatalog, OrderListView, CreateOrderView, OrderDetailView, OrderCopyView, OrderApprove, OrderDeny, SearchOrders, UpdateStatus
 from products.views import SearchCatalog
 from products import views as prod
 from django.conf import settings
@@ -34,6 +34,7 @@ urlpatterns = [
     path('orders/<pk>/reorder', OrderCopyView.as_view(), name='reorder'),
     path('orders/<int:pk>/approve', OrderApprove.as_view(), name='order_approve'),
     path('orders/<int:pk>/deny', OrderDeny.as_view(), name='order_deny'),
+    path('orders/<int:pk>/update_status', UpdateStatus.as_view(), name='update_status'),
     path('search/', SearchCatalog.as_view(), name='search_catalog'),
     path('orders/current', CurrentOrders.as_view(), name='current_orders'),
     path('orders/completed', CompletedOrders.as_view(), name='completed_orders'),

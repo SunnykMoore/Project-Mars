@@ -3,6 +3,7 @@
     <a href="/orders/current"><button type="button">See Current Orders</button></a>
     <a href="/orders/denied"><button type="button">See Denied Orders</button></a>
     <a href="/orders/completed"><button type="button"> Completed Orders</button></a>
+    <a href="/"><button type="button"> Return to Main</button></a>
     <form action="{% url 'search_orders' %}" method="get">
         <input type+"text" name="q" placeholder="Search Orders">
         <button type="submit">Search</button>
@@ -30,9 +31,17 @@
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
-        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a></td>
-        <td><a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a></td>
-        <td><a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a></td>
+        <td>{% if order.status != "DENIED" %}
+                <a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a>
+            {% endif %}
+            {% if order.status == "SUBMITTED" %}
+                <a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a>
+                <a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a>
+            {% endif %}
+            {% if order.status == "IN PROGRESS" or order.status == "SHIPPED" %}
+                <a href="/orders/{{ order.id }}/update_status"><button type = "button">Update Status</button></a>
+            {% endif %}
+        </td>
         </tr>
     </tbody>
 
@@ -40,3 +49,7 @@
 {% empty %}
     <li>No Orders yet.</li>
 {% endfor %}
+
+{% if order.status == "DENIED" %}
+    <b>Denial Reason:</b> {{order.denial_reason}}<br>
+{% endif %}
