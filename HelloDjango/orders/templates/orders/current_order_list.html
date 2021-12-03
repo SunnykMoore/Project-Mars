@@ -27,7 +27,7 @@
                 <a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a>
                 <a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a>
             {% endif %}
-            {% if order.status == "IN PROGRESS") or order.status == "SHIPPED" %}
+            {% if order.status == "IN PROGRESS" or order.status == "SHIPPED" %}
                 <a href="/orders/{{ order.id }}/update_status"><button type = "button">Update Status</button></a>
             {% endif %}
         </tr>
