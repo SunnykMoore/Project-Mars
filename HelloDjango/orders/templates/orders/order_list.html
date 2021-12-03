@@ -31,10 +31,17 @@
         <td><a href="/orders/{{ order.id }}">{{ order.SR_first_name }} {{ order.SR_last_name }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.customer_type }}</a></td>
         <td><a href="/orders/{{ order.id }}">{{ order.status }}</a></td>
-        <td><a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a>
-        <a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a>
-        <a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a>
-        <a href="/orders/{{ order.id }}/update_status"><button type = "button">Update Status</button></a></td>
+        <td>{% if (order.status != "DENIED") %}
+                <a href="/orders/{{ order.id }}/reorder"><button type = "button">Re-Order</button></a>
+            {% endif %}
+            {% if (order.status == "SUBMITTED") %}
+                <a href="/orders/{{ order.id }}/approve"><button type = "button">Accept</button></a>
+                <a href="/orders/{{ order.id }}/deny"><button type = "button">Deny</button></a>
+            {% endif %}
+            {% if (order.status == "IN PROGRESS") || (order.status == "SHIPPED") %}
+                <a href="/orders/{{ order.id }}/update_status"><button type = "button">Update Status</button></a>
+            {% endif %}
+        </td>
         </tr>
     </tbody>
 
@@ -42,3 +49,7 @@
 {% empty %}
     <li>No Orders yet.</li>
 {% endfor %}
+
+{% if order.status == "DENIED" %}
+    <b>Denial Reason:</b> {{order.denial_reason}}<br>
+{% endif %}
