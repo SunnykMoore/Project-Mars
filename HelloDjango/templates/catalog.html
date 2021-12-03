@@ -11,7 +11,7 @@
     {% for product in page_obj %}
         <a href="/products/{{ product.id }}"><img src="{{ product.image.url }}"></a><br>
         <h3>{{ product.name }}	${{ product.price }}</h3><pre>
-        Category: {{ product.category }}	Type: {{ product.product_type }}	Size: {{ product.size }}<br>
+        Category: {{ product.get_category_display }}	Type: {{ product.get_product_type_display }}	Size: {{ product.size }}<br>
         Orders so far: {{ product.num_orders }}<br></pre>
     {% endfor %}
 </center>

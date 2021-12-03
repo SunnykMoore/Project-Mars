@@ -16,7 +16,6 @@ class Order(models.Model):
     SM_first_name = models.CharField(max_length=35)
     SM_last_name = models.CharField(max_length=35)
     SR_email = models.EmailField(max_length=254)
-    department = models.CharField(max_length=20)
     physician = models.CharField(max_length=70)
     hospital = models.CharField(max_length=70)
     cust_choices = ( #Choices for the customer type dropdown menu
@@ -26,13 +25,37 @@ class Order(models.Model):
     )
     customer_type = models.CharField(max_length=10, choices=cust_choices, default="CURRENT")
     clinical_need = models.CharField(max_length=200)
-    instrument_category = models.CharField(max_length=70)
+    category_choices = (
+		("Cervical/Trauma", "Cervical/Trauma"),
+		("Interbody Fusion and Vertebral Body Replacement", "Interbody Fusion and Vertebral Body Replacement"),
+		("Thoracolumbar", "Thoracolumbar"),
+		("MAST", "MAST"),
+		("General Instruments", "General Instruments"),
+		("New Product", "New Product")
+	)
+    instrument_category = models.CharField(max_length=47, choices=category_choices, null=True)
     description = models.TextField()
-    size = models.DecimalField(max_digits=5, decimal_places=2)
+    size = models.CharField(max_length = 120, default = "Standard")
     quantity = models.PositiveIntegerField()
     disclaimer = models.BooleanField()
-    instrument_type= models.CharField(max_length=270)
-    instrument_handle = models.CharField(max_length=270)
+    type_choices = (
+		("Simple Modification - Make from Scratch", "Simple Modification - Make from Scratch"),
+		("Minor Mod to Standard Device", "Minor Mod to Standard Device"),
+		("Complex Design - Requires Predicate", "Complex Design - Requires Predicate"),
+		("Complex Assembly - Many Components", "Complex Assembly - Many Components"),
+		("New Product", "New Product")
+	)
+    instrument_type = models.CharField(max_length=39, choices=type_choices, null=True)
+    handle_choices = (
+		("1.9 Inch Ball w/ Impact Cap","1.9 Inch Ball w/ Impact Cap"),
+		("4.8 Inch Ergonomic Inline","4.8 Inch Ergonomic Inline"),
+		("4.75 Inch Tapered w/ Impact Cap","4.75 Inch Tapered w/ Impact Cap"),
+		("6 Inch Ergonomic Inline w/ Impact Cap","6 Inch Ergonomic Inline w/ Impact Cap"),
+		("4 Inch Cervical Inline w/Impact Cap","4 Inch Cervical Inline w/Impact Cap"),
+		("New Product", "New Product"),
+		("Not Applicable", "Not Applicable")
+	)
+    instrument_handle = models.CharField(max_length=37, choices=handle_choices, null=True)
     status_choices = ( # Allowed status types
         ("SUBMITTED", "Submitted"),
         ("APPROVED", "Approved"),

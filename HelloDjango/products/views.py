@@ -17,8 +17,8 @@ def catalogView(request):
 	return render(request, 'catalog.html', {'page_obj': page_obj, 'catalog': catalog})
 	
 def prodView(request, prodID):
-	product = Product.objects.get(product_id=prodID)
-	prodID = product.product_id
+	product = Product.objects.get(id=prodID)
+	prodID = product.id
 
 	return render(request, 'product_detail.html', {'product': product, 'prodID': prodID})
 
@@ -36,4 +36,5 @@ class SearchCatalog(ListView):
                                       Q(category__icontains=query) |
                                       Q(size__icontains=query) |
                                       Q(handle__icontains=query) |
-                                      Q(product_type__icontains=query))
+                                      Q(product_type__icontains=query) |
+                                      Q(department__icontains=query))
