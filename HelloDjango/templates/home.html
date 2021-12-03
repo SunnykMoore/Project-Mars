@@ -8,7 +8,18 @@
       padding: 10px;
       text-align: left;
       width: 11% ;
-    }      
+    }
+
+    table#featured {
+        border-collapse: collapse;
+        table-layout: fixed ;
+        width: 44% ;
+      }
+      th#featured, td#featured {
+        padding: 10px;
+        text-align: left;
+        width: 11% ;
+      }
 </style>
 
 <h1>Medtronics Supply Store</h1>
@@ -78,7 +89,7 @@
 
 <h2>Featured Products</h2>
 {% for product in featured_prods %}
-	<table>
+	<table id = "featured">
     <thead>
         <tr>
         <th></th>
