@@ -9,12 +9,20 @@ class OrderListView(ListView):
     model = Order
     def get_queryset(self):
         return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
-    
-class CurrentOrders(ListView):
+
+    def get_queryset(self): 
+        return Order.objects.exclude(status = "DENIED")
+
+class DenyReorderView(UpdateView):
+    model = Order
+    def get_queryset(self):
+        return Order.objects.exclude(status_choice = "DENIED")
+
+class CurrentOrders(ListView): #Current Orders
     model = Order
     def get_queryset(self): #Overrides the default queryset for listview
         return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
-    
+        
     def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
         context = super(CurrentOrders, self).get_context_data(**kwargs) #Calls original version of method
         context['current_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
@@ -26,11 +34,11 @@ class CurrentOrders(ListView):
     
     template_name='orders/current_order_list.html' #Selects which html template to pass the context to
 
-class CompletedOrders(ListView):
+class CompletedOrders(ListView): #Completed Orders
     model = Order
     def get_queryset(self): #Overrides the default queryset for listview
         return Order.objects.exclude(hospital = "Enter Hospital") #Excludes the dummy order for a new Product that new product orders are based on
-    
+
     def get_context_data(self, **kwargs): #Overrides Listview get_context_data method
         context = super(CompletedOrders, self).get_context_data(**kwargs) #Calls original version of method
         context['completed_orders'] = Order.objects.filter( #Creates a subset of the context with only current orders
@@ -41,13 +49,13 @@ class CompletedOrders(ListView):
     template_name='orders/completed_order_list.html' #Selects which html template to pass the context to
 
     
-class DeniedOrders(ListView):
+class DeniedOrders(ListView): #orders/denied
     model = Order
     def get_queryset(self): #Combines filtering to denied orders and excluding dummy new order into overriding the get_queryset method
-        return Order.objects.exclude(hospital = "Enter Hospital").filter(status="DENIED") #Excludes the dummy order for a new Product that new product orders are based on
+        return Order.objects.exclude(hospital = "Enter Hospital", status = "DENIED").filter(status="DENIED") #Excludes the dummy order for a new Product that new product orders are based on
     template_name='orders/denied_order_list.html' #Selects which html template to pass the context to
 
-class CreateOrderView(CreateView):
+class CreateOrderView(CreateView): #/orders/
     model = Order
     def form_valid(self, form): #override inherent form_valid method of CreateView
         prod = form.instance.product #grabs the product by calling the product attribute of the current instance, the order being created
@@ -62,8 +70,8 @@ class CreateOrderView(CreateView):
     
     success_url = '/orders/'
 
-class CurrentOrderListView(ListView):
-    model = Order
+#class CurrentOrderListView(ListView):
+  #  model = Order
   
 class OrderFromCatalog(UpdateView): #The pre-filled order form for each catalog product
     model = Order #select model to create/update objects with
@@ -149,7 +157,7 @@ class OrderDeny(UpdateView):
 	fields = ('product', 'SR_first_name', 'SR_last_name', 'status', 'denial_reason')
 	success_url = '/orders/'
  
-class SearchOrders(ListView):
+class SearchOrders(ListView): #/orders/search
     model = Order
     def get_queryset(self): #Override listview get_queryset to just get the orders that match search terms
         query = self.request.GET.get('q') #obtains 'q', the query submitted by the user
